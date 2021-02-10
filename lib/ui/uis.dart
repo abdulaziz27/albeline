@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
+// import 'package:flutter/src/widgets/image.dart' as img;
+// import 'dart:async';
+// import 'dart:io';
 
 // Splash Screen
 import 'package:albeline/constants.dart';
@@ -16,7 +19,7 @@ import 'package:albeline/enums.dart';
 // This is the best practice
 // import '../components/splash_content.dart';
 import 'package:albeline/widgets/widgets.dart';
-// import 'package:albeline/models/models.dart';
+import 'package:albeline/models/models.dart';
 
 part 'splash/splash_screen.dart';
 part 'splash/components/body.dart';

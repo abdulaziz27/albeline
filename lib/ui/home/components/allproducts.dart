@@ -1,22 +1,15 @@
 part of '../../uis.dart';
 
 // class AllProducts extends StatefulWidget {
-//   AllProducts({
-//     Key key,
-//     @required this.product,
-//   }) : super(key: key);
-
-//   final Product product;
-
 //   @override
 //   _AllProductsState createState() => _AllProductsState();
 // }
 
 // class _AllProductsState extends State<AllProducts> {
-//   List<ProductModel> dataProducts = new List();
+//   List dataProducts;
 
 //   void getDataProducts() {
-//     ApiService().getProducts().then((value) {
+//     getProducts().then((value) {
 //       setState(() {
 //         dataProducts = value;
 //       });
