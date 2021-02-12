@@ -121,7 +121,7 @@ class Product {
   List<Category> categories;
   double rate;
   bool condition;
-  List<Image> images;
+  List<Images> images;
   int sold;
   int price;
   dynamic quantity;
@@ -134,7 +134,8 @@ class Product {
             json["categories"].map((x) => Category.fromJson(x))),
         rate: json["rate"].toDouble(),
         condition: json["condition"],
-        images: List<Image>.from(json["images"].map((x) => Image.fromJson(x))),
+        images:
+            List<Images>.from(json["images"].map((x) => Images.fromJson(x))),
         sold: json["sold"],
         price: json["price"],
         quantity: json["quantity"],
@@ -171,14 +172,14 @@ class Category {
       };
 }
 
-class Image {
-  Image({
+class Images {
+  Images({
     this.id,
   });
 
   int id;
 
-  factory Image.fromJson(Map<String, dynamic> json) => Image(
+  factory Images.fromJson(Map<String, dynamic> json) => Images(
         id: json["id"],
       );
 

@@ -6,7 +6,7 @@ class LoginSBody extends StatelessWidget {
     return Column(
       children: [
         SizedBox(height: SizeConfig.screenHeight * 0.04),
-        ImageBawaan.asset(
+        Image.asset(
           "assets/pics/success.png",
           height: SizeConfig.screenHeight * 0.4, //40%
         ),
