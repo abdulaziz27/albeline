@@ -1,189 +1,50 @@
 part of 'models.dart';
 
-// To parse this JSON data, do
-//
-//     final productModel = productModelFromJson(jsonString);
-
-ProductModel productModelFromJson(String str) =>
-    ProductModel.fromJson(json.decode(str));
-
-String productModelToJson(ProductModel data) => json.encode(data.toJson());
-
-class ProductModel {
-  ProductModel({
-    this.products,
-    this.links,
-    this.meta,
-  });
-
-  List<Product> products;
-  Links links;
-  Meta meta;
-
-  factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
-        products: List<Product>.from(
-            json["products"].map((x) => Product.fromJson(x))),
-        links: Links.fromJson(json["links"]),
-        meta: Meta.fromJson(json["meta"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "products": List<dynamic>.from(products.map((x) => x.toJson())),
-        "links": links.toJson(),
-        "meta": meta.toJson(),
-      };
-}
-
-class Links {
-  Links({
-    this.first,
-    this.last,
-    this.prev,
-    this.next,
-  });
-
-  String first;
-  String last;
-  dynamic prev;
-  dynamic next;
-
-  factory Links.fromJson(Map<String, dynamic> json) => Links(
-        first: json["first"],
-        last: json["last"],
-        prev: json["prev"],
-        next: json["next"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "first": first,
-        "last": last,
-        "prev": prev,
-        "next": next,
-      };
-}
-
-class Meta {
-  Meta({
-    this.currentPage,
-    this.from,
-    this.lastPage,
-    this.path,
-    this.perPage,
-    this.to,
-    this.total,
-  });
-
-  int currentPage;
-  int from;
-  int lastPage;
-  String path;
-  int perPage;
-  int to;
-  int total;
-
-  factory Meta.fromJson(Map<String, dynamic> json) => Meta(
-        currentPage: json["current_page"],
-        from: json["from"],
-        lastPage: json["last_page"],
-        path: json["path"],
-        perPage: json["per_page"],
-        to: json["to"],
-        total: json["total"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "current_page": currentPage,
-        "from": from,
-        "last_page": lastPage,
-        "path": path,
-        "per_page": perPage,
-        "to": to,
-        "total": total,
-      };
-}
-
 class Product {
-  Product({
-    this.id,
-    this.name,
-    this.categories,
-    this.rate,
-    this.condition,
-    this.images,
-    this.sold,
-    this.price,
-    this.quantity,
-    this.desc,
-  });
-
-  int id;
+  String id;
   String name;
-  List<Category> categories;
-  double rate;
-  bool condition;
-  List<Images> images;
-  int sold;
-  int price;
-  dynamic quantity;
-  String desc;
+  String images;
+  String price;
 
-  factory Product.fromJson(Map<String, dynamic> json) => Product(
-        id: json["id"],
-        name: json["name"],
-        categories: List<Category>.from(
-            json["categories"].map((x) => Category.fromJson(x))),
-        rate: json["rate"].toDouble(),
-        condition: json["condition"],
-        images:
-            List<Images>.from(json["images"].map((x) => Images.fromJson(x))),
-        sold: json["sold"],
-        price: json["price"],
-        quantity: json["quantity"],
-        desc: json["desc"],
-      );
+  Product({this.id, this.name, this.images, this.price});
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-        "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
-        "rate": rate,
-        "condition": condition,
-        "images": List<dynamic>.from(images.map((x) => x.toJson())),
-        "sold": sold,
-        "price": price,
-        "quantity": quantity,
-        "desc": desc,
-      };
-}
+  factory Product.createProduct(Map<String, dynamic> object) {
+    return Product(
+      id: object['id'].toString(),
+      name: object['name'],
+      images: object['images'][0]['id'].toString(),
+      price: object['price'].toString(),
+    );
+  }
 
-class Category {
-  Category({
-    this.name,
-  });
+  static Future<List<Product>> getProducts() async {
+    String baseUrl = 'https://albeline-backend.herokuapp.com/api/products';
 
-  String name;
+    var productResult = await http.get(baseUrl);
+    var jsonObj = json.decode(productResult.body);
+    print(jsonObj);
 
-  factory Category.fromJson(Map<String, dynamic> json) => Category(
-        name: json["name"],
-      );
+    List<dynamic> listProduct = (jsonObj as Map<String, dynamic>)['products'];
 
-  Map<String, dynamic> toJson() => {
-        "name": name,
-      };
-}
+    List<Product> products = [];
+    for (int i = 0; i < listProduct.length; i++)
+      products.add(Product.createProduct(listProduct[i]));
 
-class Images {
-  Images({
-    this.id,
-  });
+    print(products.length);
+    return products;
+  }
 
-  int id;
+  // static Future<Product> connectToAPI(
+  //     String name, String images, String price) async {
+  //   String baseUrl = 'http://api-albeline.herokuapp.com/api';
 
-  factory Images.fromJson(Map<String, dynamic> json) => Images(
-        id: json["id"],
-      );
+  //   var productResult = await http.get(baseUrl);
+  //   var jsonObject = json.decode(baseUrl.body);
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-      };
+  //   http.post(baseUrl, body: {
+  //     'name': name,
+  //     'images': image,
+  //     'price': price,
+  //   });
+  // }
 }
