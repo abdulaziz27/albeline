@@ -29,7 +29,9 @@ class ProfileBody extends StatelessWidget {
           ProfileMenu(
             text: "Help Center",
             icon: "assets/icons/Question mark.svg",
-            press: () {},
+            press: () => {
+              Navigator.pushNamed(context, HelpCenterScreen.routeName),
+            },
           ),
           ProfileMenu(
             text: "Log Out",

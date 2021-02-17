@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
@@ -67,3 +69,6 @@ part 'profile/components/profile_pic.dart';
 
 part 'notification/notif_screen.dart';
 part 'notification/components/body.dart';
+
+part 'help_center/help_center_screen.dart';
+part 'help_center/components/body.dart';
