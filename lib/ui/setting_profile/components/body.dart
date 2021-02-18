@@ -1,13 +1,12 @@
 part of '../../uis.dart';
 
-class HelpCenterContent extends StatelessWidget {
+class SettingProfileContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: ListView(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 20),
             child: Column(
               children: [
                 Container(
@@ -19,7 +18,7 @@ class HelpCenterContent extends StatelessWidget {
                   ),
                   child: ListTile(
                     title: Text(
-                      "FAQ",
+                      "My Account",
                       style:
                           TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                     ),
@@ -27,7 +26,7 @@ class HelpCenterContent extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text(
-                    "How Does the Albeline Application Work?",
+                    "My Profile",
                     style: TextStyle(fontSize: 13),
                   ),
                   trailing: Icon(
@@ -37,7 +36,7 @@ class HelpCenterContent extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text(
-                    "How to Buy Items Available on Albeline?",
+                    "My Address",
                     style: TextStyle(fontSize: 13),
                   ),
                   trailing: Icon(
@@ -47,7 +46,7 @@ class HelpCenterContent extends StatelessWidget {
                 ),
                 ListTile(
                   title: Text(
-                    "Features of COD (Cash On Delivery) on the Albeline App",
+                    "Card or Back Account",
                     style: TextStyle(fontSize: 13),
                   ),
                   trailing: Icon(
@@ -73,24 +72,16 @@ class HelpCenterContent extends StatelessWidget {
                   ),
                   child: ListTile(
                     title: Text(
-                      "FOR MORE INFORMATION CONTACT US :",
+                      "Setting",
                       style:
                           TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
                 ListTile(
-                  leading: Image.asset(
-                    "assets/icons/whatsapp3.png",
-                    width: 30,
-                    height: 30,
-                  ),
                   title: Text(
-                    "Whatsapp: ",
+                    "Chat Settings",
                     style: TextStyle(fontSize: 13),
-                  ),
-                  subtitle: Text(
-                    "+62 81234567890",
                   ),
                   trailing: Icon(
                     Icons.arrow_right,
@@ -98,17 +89,9 @@ class HelpCenterContent extends StatelessWidget {
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Image.asset(
-                    "assets/icons/instagram.png",
-                    width: 30,
-                    height: 30,
-                  ),
                   title: Text(
-                    "Instagram: ",
+                    "Notification Settings",
                     style: TextStyle(fontSize: 13),
-                  ),
-                  subtitle: Text(
-                    "@albeline",
                   ),
                   trailing: Icon(
                     Icons.arrow_right,
@@ -116,17 +99,123 @@ class HelpCenterContent extends StatelessWidget {
                   onTap: () {},
                 ),
                 ListTile(
-                  leading: Image.asset(
-                    "assets/icons/gmail.png",
-                    width: 30,
-                    height: 30,
-                  ),
                   title: Text(
-                    "Gmail: ",
+                    "Privacy Settings",
                     style: TextStyle(fontSize: 13),
                   ),
-                  subtitle: Text(
-                    "albeline@gmail.com",
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "User Blocked",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Language",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  ),
+                  onTap: () {},
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(color: Color(0xFFFF7643), width: 15.0),
+                      bottom: BorderSide(color: Color(0xFFFF7643), width: 15.0),
+                    ),
+                  ),
+                  child: ListTile(
+                    title: Text(
+                      "Help",
+                      style:
+                          TextStyle(fontSize: 11, fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+                ListTile(
+                  title: Text(
+                    "Help Center",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Tips and Tricks",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Community Regulations",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Albeline Policy",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "User Blocked",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Information",
+                    style: TextStyle(fontSize: 13),
+                  ),
+                  trailing: Icon(
+                    Icons.arrow_right,
+                  ),
+                  onTap: () {},
+                ),
+                ListTile(
+                  title: Text(
+                    "Apply for account deletion",
+                    style: TextStyle(fontSize: 13),
                   ),
                   trailing: Icon(
                     Icons.arrow_right,

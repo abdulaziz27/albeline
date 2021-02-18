@@ -72,3 +72,6 @@ part 'notification/components/body.dart';
 
 part 'help_center/help_center_screen.dart';
 part 'help_center/components/body.dart';
+
+part 'setting_profile/setting_profile_screen.dart';
+part 'setting_profile/components/body.dart';
