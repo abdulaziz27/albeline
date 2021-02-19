@@ -19,17 +19,23 @@ class ProfileBody extends StatelessWidget {
           ProfileMenu(
             text: "Notifications",
             icon: "assets/icons/Bell.svg",
-            press: () {},
+            press: () => {
+              Navigator.pushNamed(context, NotifScreen.routeName),
+            },
           ),
           ProfileMenu(
             text: "Settings",
             icon: "assets/icons/Settings.svg",
-            press: () {},
+            press: () => {
+              Navigator.pushNamed(context, SettingProfileScreen.routeName),
+            },
           ),
           ProfileMenu(
             text: "Help Center",
             icon: "assets/icons/Question mark.svg",
-            press: () {},
+            press: () => {
+              Navigator.pushNamed(context, HelpCenterScreen.routeName),
+            },
           ),
           ProfileMenu(
             text: "Log Out",
