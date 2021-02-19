@@ -1,67 +1,108 @@
 part of 'models.dart';
 
-// To parse this JSON data, do
-//
-//     final categoryModel = categoryModelFromJson(jsonString);
+class Category {
+  String id;
+  String name;
+  String image;
 
-// CategoryModel categoryModelFromJson(String str) =>
-//     CategoryModel.fromJson(json.decode(str));
+  Category({
+    this.id,
+    this.name,
+    this.image,
+  });
 
-// String categoryModelToJson(CategoryModel data) => json.encode(data.toJson());
+  factory Category.createCategory(Map<String, dynamic> object) {
+    return Category(
+      id: object['id'].toString(),
+      name: object['name'],
+      image: object['image']['id'].toString(),
+    );
+  }
 
-// class CategoryModel {
-//   CategoryModel({
-//     this.error,
-//     this.categories,
-//   });
+  static Future<List<Category>> getCategories() async {
+    String baseUrl = 'https://albeline-backend.herokuapp.com/api/category';
 
-//   bool error;
-//   List<Category> categories;
+    var categoryResult = await http.get(baseUrl);
+    var jsonObj = json.decode(categoryResult.body);
+    print('================== Category ======================');
+    print(jsonObj);
+    print('================== Category ======================');
 
-//   factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
-//         error: json["error"],
-//         categories: List<Category>.from(
-//             json["categories"].map((x) => Category.fromJson(x))),
-//       );
+    List<dynamic> listCategory =
+        (jsonObj as Map<String, dynamic>)['categories'];
 
-//   Map<String, dynamic> toJson() => {
-//         "error": error,
-//         "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
-//       };
-// }
+    List<Category> categories = [];
+    for (int i = 0; i < listCategory.length; i++)
+      categories.add(Category.createCategory(listCategory[i]));
 
-// class Category {
-//   Category({
-//     this.name,
-//     this.image,
-//   });
+    print('================== Category Length ======================');
+    print('==================== Category Length ====================');
+    print(categories.length);
+    print('================== Category Length ======================');
+    print('===================== Category Length ===================');
+    return categories;
+  }
+}
 
-//   String name;
-//   Image image;
+class CategoryDetail {
+  String id;
+  String name;
+  String store;
+  String detailImg;
+  String category;
+  String reviews;
+  String price;
+  String sold;
+  String rate;
+  String stock;
+  String heavy;
+  String condition;
+  String description;
 
-//   factory Category.fromJson(Map<String, dynamic> json) => Category(
-//         name: json["name"],
-//         image: Image.fromJson(json["image"]),
-//       );
+  CategoryDetail({
+    this.id,
+    this.name,
+    this.store,
+    this.detailImg,
+    this.category,
+    this.reviews,
+    this.price,
+    this.sold,
+    this.rate,
+    this.stock,
+    this.heavy,
+    this.condition,
+    this.description,
+  });
 
-//   Map<String, dynamic> toJson() => {
-//         "name": name,
-//         "image": image.toJson(),
-//       };
-// }
+  factory CategoryDetail.createCategoryDetail(Map<String, dynamic> object) {
+    return CategoryDetail(
+      id: object['id'].toString(),
+      name: object['name'],
+      detailImg: object['images']['id'].toString(),
+      store: object['stores']['id'].toString(),
+      category: object['categories']['id'].toString(),
+      reviews: object['reviews']['id'].toString(),
+      price: object['price'].toString(),
+      sold: object['sold'].toString(),
+      rate: object['rate'].toString(),
+      stock: object['stock'].toString(),
+      heavy: object['heavy'].toString(),
+      condition: object['condition'].toString(),
+      description: object['description'].toString(),
+    );
+  }
 
-// class Image {
-//   Image({
-//     this.id,
-//   });
+  static Future<CategoryDetail> getCategoryDetail(String id) async {
+    String baseUrl =
+        'https://albeline-backend.herokuapp.com/api/category/${id}';
 
-//   int id;
+    var productDetailResult = await http.get(baseUrl);
+    var jsonObj = json.decode(productDetailResult.body);
+    print(jsonObj);
 
-//   factory Image.fromJson(Map<String, dynamic> json) => Image(
-//         id: json["id"],
-//       );
+    var userData = (jsonObj as Map<String, dynamic>)['product'];
 
-//   Map<String, dynamic> toJson() => {
-//         "id": id,
-//       };
-// }
+    return CategoryDetail.createCategoryDetail(userData);
+  }
+}
