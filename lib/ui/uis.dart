@@ -52,6 +52,10 @@ part 'complete_profile/complete_profile_screen.dart';
 part 'complete_profile/components/body.dart';
 part 'complete_profile/components/complete_profile_form.dart';
 
+part 'create_product/create_product_screen.dart';
+part 'create_product/components/body.dart';
+part 'create_product/components/create_product_form.dart';
+
 part 'otp/otp_screen.dart';
 part 'otp/components/body.dart';
 part 'otp/components/otp_form.dart';
