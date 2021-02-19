@@ -22,7 +22,9 @@ class Product {
 
     var productResult = await http.get(baseUrl);
     var jsonObj = json.decode(productResult.body);
+    print('================== PRODUCT LIST ======================');
     print(jsonObj);
+    print('================== PRODUCT LIST ======================');
 
     List<dynamic> listProduct = (jsonObj as Map<String, dynamic>)['products'];
 
@@ -30,7 +32,11 @@ class Product {
     for (int i = 0; i < listProduct.length; i++)
       products.add(Product.createProduct(listProduct[i]));
 
+    print('================== PRODUCT LENGTH ======================');
+    print('===================== PRODUCT LENGTH ===================');
     print(products.length);
+    print('===================== PRODUCT LENGTH ===================');
+    print('===================PRODUCT LENGTH =====================');
     return products;
   }
 
@@ -47,4 +53,66 @@ class Product {
   //     'price': price,
   //   });
   // }
+}
+
+class ProductDetail {
+  String id;
+  String name;
+  String store;
+  String detailImg;
+  String category;
+  String reviews;
+  String price;
+  String sold;
+  String rate;
+  String stock;
+  String heavy;
+  String condition;
+  String description;
+
+  ProductDetail({
+    this.id,
+    this.name,
+    this.store,
+    this.detailImg,
+    this.category,
+    this.reviews,
+    this.price,
+    this.sold,
+    this.rate,
+    this.stock,
+    this.heavy,
+    this.condition,
+    this.description,
+  });
+
+  factory ProductDetail.createProductDetail(Map<String, dynamic> object) {
+    return ProductDetail(
+      id: object['id'].toString(),
+      name: object['name'],
+      detailImg: object['images']['id'].toString(),
+      store: object['stores']['id'].toString(),
+      category: object['categories']['id'].toString(),
+      reviews: object['reviews']['id'].toString(),
+      price: object['price'].toString(),
+      sold: object['sold'].toString(),
+      rate: object['rate'].toString(),
+      stock: object['stock'].toString(),
+      heavy: object['heavy'].toString(),
+      condition: object['condition'].toString(),
+      description: object['description'].toString(),
+    );
+  }
+
+  static Future<ProductDetail> getProductDetail(String id) async {
+    String baseUrl = 'https://albeline-backend.herokuapp.com/api/product/${id}';
+
+    var productDetailResult = await http.get(baseUrl);
+    var jsonObj = json.decode(productDetailResult.body);
+    print(jsonObj);
+
+    var userData = (jsonObj as Map<String, dynamic>)['product'];
+
+    return ProductDetail.createProductDetail(userData);
+  }
 }

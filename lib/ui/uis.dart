@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
@@ -71,3 +73,21 @@ part 'profile/components/profile_pic.dart';
 
 part 'notification/notif_screen.dart';
 part 'notification/components/body.dart';
+
+// part 'details/details_screen.dart';
+// part 'details/components/body.dart';
+// part 'details/components/color_dots.dart';
+// part 'details/components/custom_app_bar.dart';
+// part 'details/components/product_description.dart';
+// part 'details/components/product_images.dart';
+// part 'details/components/top_rounded_container.dart';
+
+part 'product_detail/components/body.dart';
+part 'product_detail/components/sample_screen.dart';
+part 'product_detail/product_detail_screen.dart';
+
+part 'help_center/help_center_screen.dart';
+part 'help_center/components/body.dart';
+
+part 'setting_profile/setting_profile_screen.dart';
+part 'setting_profile/components/body.dart';
