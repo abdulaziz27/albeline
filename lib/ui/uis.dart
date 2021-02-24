@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -21,6 +22,8 @@ import 'package:albeline/enums.dart';
 // This is the best practice
 // import '../components/splash_content.dart';
 import 'package:albeline/widgets/widgets.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'splash/splash_screen.dart';
 part 'splash/components/body.dart';

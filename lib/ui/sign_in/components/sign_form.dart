@@ -7,8 +7,10 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
-  String email;
-  String password;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  Map<String, String> _authData = {'email': '', 'password': ''};
+  bool _isLoading = false;
   bool remember = false;
   final List<String> errors = [];
 
@@ -24,6 +26,76 @@ class _SignFormState extends State<SignForm> {
       setState(() {
         errors.remove(error);
       });
+  }
+
+  Future loginUser(String email, String password) async {
+    try {
+      var data = {"email": email, "password": password};
+      print(data);
+      var url = "https://albeline-backend.herokuapp.com/api/login";
+      var hasil = await http.post(url, body: (data));
+      if (hasil.statusCode == 200) {
+        print("Login Successfully");
+        return true;
+      } else {
+        print("Failed Login");
+        return null;
+      }
+    } catch (e) {
+      print("Error on catch $e");
+    }
+  }
+
+  void login() {
+    loginUser(email.text, password.text).then((value) {
+      setState(() {
+        _isLoading = true;
+      });
+      setState(() {
+        if (value == true) {
+          // msg = "Success";
+          AlertDialog alertDialog = AlertDialog(
+            content: Container(
+              height: 100.0,
+              child: Column(
+                children: [
+                  Text("Login Successfully"),
+                  RaisedButton(
+                    child: Text("OK"),
+                    onPressed: () => Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => LoginSuccessScreen()),
+                      (Route<dynamic> route) => false,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+          showDialog(context: context, child: alertDialog);
+        } else {
+          AlertDialog alertDialog = AlertDialog(
+            content: Container(
+              height: 100.0,
+              child: Column(
+                children: [
+                  Text("Login Failed"),
+                  RaisedButton(
+                    child: Text("OK"),
+                    onPressed: () => Navigator.pop(context),
+                  )
+                ],
+              ),
+            ),
+          );
+          showDialog(context: context, child: alertDialog);
+        }
+      });
+    });
+    setState(() {
+      _isLoading = false;
+    });
   }
 
   @override
@@ -68,7 +140,8 @@ class _SignFormState extends State<SignForm> {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                login();
+                // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           ),
@@ -80,7 +153,10 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildPasswordFormField() {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => password = newValue,
+      onSaved: (value) {
+        _authData['password'] = value;
+      },
+      controller: password,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
@@ -113,7 +189,10 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
+      onSaved: (value) {
+        _authData['email'] = value;
+      },
+      controller: email,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);
