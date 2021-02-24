@@ -160,7 +160,9 @@ class SettingProfileContent extends StatelessWidget {
                   trailing: Icon(
                     Icons.arrow_right,
                   ),
-                  onTap: () {},
+                  onTap: () => {
+                    Navigator.pushNamed(context, HelpCenterScreen.routeName),
+                  },
                 ),
                 ListTile(
                   title: Text(

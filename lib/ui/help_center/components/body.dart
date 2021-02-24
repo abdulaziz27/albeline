@@ -7,7 +7,7 @@ class HelpCenterContent extends StatelessWidget {
       body: ListView(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 20),
+            // margin: EdgeInsets.only(top: 20),
             child: Column(
               children: [
                 Container(
@@ -33,7 +33,8 @@ class HelpCenterContent extends StatelessWidget {
                   trailing: Icon(
                     Icons.arrow_right,
                   ),
-                  onTap: () {},
+                  onTap: () =>
+                      {Navigator.pushNamed(context, AppWorkScreen.routeName)},
                 ),
                 ListTile(
                   title: Text(
@@ -43,7 +44,8 @@ class HelpCenterContent extends StatelessWidget {
                   trailing: Icon(
                     Icons.arrow_right,
                   ),
-                  onTap: () {},
+                  onTap: () =>
+                      {Navigator.pushNamed(context, BuyItemScreen.routeName)},
                 ),
                 ListTile(
                   title: Text(
@@ -53,7 +55,9 @@ class HelpCenterContent extends StatelessWidget {
                   trailing: Icon(
                     Icons.arrow_right,
                   ),
-                  onTap: () {},
+                  onTap: () => {
+                    Navigator.pushNamed(context, FeaturesCODScreen.routeName)
+                  },
                 ),
               ],
             ),
