@@ -16,4 +16,7 @@ final Map<String, WidgetBuilder> routes = {
   NotifScreen.routeName: (context) => NotifScreen(),
   HelpCenterScreen.routeName: (context) => HelpCenterScreen(),
   SettingProfileScreen.routeName: (context) => SettingProfileScreen(),
+  AppWorkScreen.routeName: (context) => AppWorkScreen(),
+  BuyItemScreen.routeName: (context) => BuyItemScreen(),
+  FeaturesCODScreen.routeName: (context) => FeaturesCODScreen(),
 };
