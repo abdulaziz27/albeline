@@ -6,3 +6,4 @@ import 'package:albeline/ui/uis.dart';
 
 part 'category.dart';
 part 'product.dart';
+part 'productDetail.dart';

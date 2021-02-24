@@ -54,6 +54,10 @@ part 'complete_profile/complete_profile_screen.dart';
 part 'complete_profile/components/body.dart';
 part 'complete_profile/components/complete_profile_form.dart';
 
+part 'create_product/create_product_screen.dart';
+part 'create_product/components/body.dart';
+part 'create_product/components/create_product_form.dart';
+
 part 'otp/otp_screen.dart';
 part 'otp/components/body.dart';
 part 'otp/components/otp_form.dart';
@@ -69,6 +73,18 @@ part 'profile/components/profile_pic.dart';
 
 part 'notification/notif_screen.dart';
 part 'notification/components/body.dart';
+
+// part 'details/details_screen.dart';
+// part 'details/components/body.dart';
+// part 'details/components/color_dots.dart';
+// part 'details/components/custom_app_bar.dart';
+// part 'details/components/product_description.dart';
+// part 'details/components/product_images.dart';
+// part 'details/components/top_rounded_container.dart';
+
+part 'product_detail/components/body.dart';
+part 'product_detail/components/sample_screen.dart';
+part 'product_detail/product_detail_screen.dart';
 
 part 'help_center/help_center_screen.dart';
 part 'help_center/components/body.dart';

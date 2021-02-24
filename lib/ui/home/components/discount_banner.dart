@@ -23,9 +23,9 @@ class DiscountBanner extends StatelessWidget {
         TextSpan(
           style: TextStyle(color: Colors.white),
           children: [
-            TextSpan(text: "Iedul Fitri Special Offers\n"),
+            TextSpan(text: "Romadhon Special Offers\n"),
             TextSpan(
-              text: "Cashback 40%",
+              text: "Extra Cashback 60%",
               style: TextStyle(
                 fontSize: getProportionateScreenWidth(24),
                 fontWeight: FontWeight.bold,

@@ -1,9 +1,30 @@
 part of '../../uis.dart';
 
-class SpecialOffers extends StatelessWidget {
+class SpecialOffers extends StatefulWidget {
   const SpecialOffers({
     Key key,
   }) : super(key: key);
+
+  @override
+  _SpecialOffersState createState() => _SpecialOffersState();
+}
+
+class _SpecialOffersState extends State<SpecialOffers> {
+  List<Category> categories = [];
+
+  void getListCategories() {
+    Category.getCategories().then((value) {
+      setState(() {
+        categories = value;
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getListCategories();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +34,7 @@ class SpecialOffers extends StatelessWidget {
           padding:
               EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: SectionTitle(
-            title: "Special for you",
+            title: "Categories",
             press: () {},
           ),
         ),
@@ -22,18 +43,15 @@ class SpecialOffers extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              SpecialOfferCard(
-                image: "assets/pics/Image Banner 2.png",
-                category: "Smartphone",
-                numOfBrands: 18,
-                press: () {},
-              ),
-              SpecialOfferCard(
-                image: "assets/pics/Image Banner 3.png",
-                category: "Fashion",
-                numOfBrands: 24,
-                press: () {},
-              ),
+              ...List.generate(categories.length, (index) {
+                return SpecialOfferCard(
+                  image:
+                      'https://albeline-backend.herokuapp.com/api/image/${categories[index].image}',
+                  category: categories[index].name,
+                  numOfBrands: categories[index].id.length,
+                  press: () {},
+                );
+              }),
               SizedBox(width: getProportionateScreenWidth(20)),
             ],
           ),
@@ -69,7 +87,7 @@ class SpecialOfferCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(20),
             child: Stack(
               children: [
-                Image.asset(
+                Image.network(
                   image,
                   fit: BoxFit.cover,
                 ),
