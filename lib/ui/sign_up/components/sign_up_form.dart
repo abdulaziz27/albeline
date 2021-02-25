@@ -6,7 +6,7 @@ class SignUpForm extends StatefulWidget {
 }
 
 class _SignUpFormState extends State<SignUpForm> {
-  String username, email, password, cPassword;
+  String username, email, password, c_password;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   bool remember = false;
@@ -33,7 +33,7 @@ class _SignUpFormState extends State<SignUpForm> {
       });
   }
 
-  signup(username, email, password, cPassword) async {
+  signup(username, email, password, c_password) async {
     setState(() {
       isLoading = true;
     });
@@ -42,7 +42,7 @@ class _SignUpFormState extends State<SignUpForm> {
     Map data = {
       'email': email,
       'password': password,
-      'cPassword': cPassword,
+      'c_password': c_password,
       'username': username
     };
     print(data.toString());
@@ -95,7 +95,7 @@ class _SignUpFormState extends State<SignUpForm> {
     String username,
     String email,
     String password,
-    String cPassword,
+    String c_password,
   ) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
 
@@ -103,7 +103,7 @@ class _SignUpFormState extends State<SignUpForm> {
     preferences.setString("username", username);
     preferences.setString("email", email);
     preferences.setString("password", password);
-    preferences.setString("cPassword", cPassword);
+    preferences.setString("c_password", c_password);
     preferences.commit();
   }
 
@@ -141,14 +141,14 @@ class _SignUpFormState extends State<SignUpForm> {
   TextFormField buildConfirmPassFormField() {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => cPassword = newValue,
+      onSaved: (newValue) => c_password = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
-        } else if (value.isNotEmpty && password == cPassword) {
+        } else if (value.isNotEmpty && password == c_password) {
           removeError(error: kMatchPassError);
         }
-        cPassword = value;
+        c_password = value;
       },
       validator: (value) {
         if (value.isEmpty) {
