@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "709432284505",
+    "project_id": "albeline-apk",
+    "storage_bucket": "albeline-apk.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:709432284505:android:4ca5145c1ee12afa732848",
+        "android_client_info": {
+          "package_name": "com.example.albeline"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "709432284505-cubmfibicjo81sbv2ivqhv9ca4fnjtg2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.albeline",
+            "certificate_hash": "89527302fdebfac758fe8d83ba69ecc1064a3aa9"
+          }
+        },
+        {
+          "client_id": "709432284505-qqgdofa21r3daprc7dls59c35pf7kke7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBR6DptN8HCPRFbj84btdEWZuorsDeRb7A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "709432284505-qqgdofa21r3daprc7dls59c35pf7kke7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
