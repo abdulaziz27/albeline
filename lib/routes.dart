@@ -8,6 +8,7 @@ final Map<String, WidgetBuilder> routes = {
   LoginSuccessScreen.routeName: (context) => LoginSuccessScreen(),
   SignUpScreen.routeName: (context) => SignUpScreen(),
   CompleteProfileScreen.routeName: (context) => CompleteProfileScreen(),
+  CreateProductScreen.routeName: (context) => CreateProductScreen(),
   // OtpScreen.routeName: (context) => OtpScreen(),
   HomeScreen.routeName: (context) => HomeScreen(),
   // DetailsScreen.routeName: (context) => DetailsScreen(),
@@ -16,5 +17,11 @@ final Map<String, WidgetBuilder> routes = {
   NotifScreen.routeName: (context) => NotifScreen(),
   HelpCenterScreen.routeName: (context) => HelpCenterScreen(),
   SettingProfileScreen.routeName: (context) => SettingProfileScreen(),
+<<<<<<< HEAD
   // ByCategoryScreen.routeName: (context) => ByCategoryScreen(),
+=======
+  AppWorkScreen.routeName: (context) => AppWorkScreen(),
+  BuyItemScreen.routeName: (context) => BuyItemScreen(),
+  FeaturesCODScreen.routeName: (context) => FeaturesCODScreen(),
+>>>>>>> 027ae58549c921ba4376120842926eec07e9a8d7
 };

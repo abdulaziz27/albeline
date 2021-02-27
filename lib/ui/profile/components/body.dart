@@ -17,6 +17,13 @@ class ProfileBody extends StatelessWidget {
             },
           ),
           ProfileMenu(
+            text: "Create Product",
+            icon: "assets/icons/User Icon.svg",
+            press: () => {
+              Navigator.pushNamed(context, CreateProductScreen.routeName),
+            },
+          ),
+          ProfileMenu(
             text: "Notifications",
             icon: "assets/icons/Bell.svg",
             press: () => {

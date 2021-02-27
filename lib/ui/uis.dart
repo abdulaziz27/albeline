@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -21,6 +22,8 @@ import 'package:albeline/enums.dart';
 // This is the best practice
 // import '../components/splash_content.dart';
 import 'package:albeline/widgets/widgets.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'splash/splash_screen.dart';
 part 'splash/components/body.dart';
@@ -53,6 +56,10 @@ part 'helper/keyboard.dart';
 part 'complete_profile/complete_profile_screen.dart';
 part 'complete_profile/components/body.dart';
 part 'complete_profile/components/complete_profile_form.dart';
+
+part 'create_product/create_product_screen.dart';
+part 'create_product/components/body.dart';
+part 'create_product/components/create_product_form.dart';
 
 part 'otp/otp_screen.dart';
 part 'otp/components/body.dart';
@@ -88,4 +95,15 @@ part 'help_center/components/body.dart';
 part 'setting_profile/setting_profile_screen.dart';
 part 'setting_profile/components/body.dart';
 
+<<<<<<< HEAD
 part 'category_detail/category_detail_screen.dart';
+=======
+part 'help_center/components/app_work_content_screen.dart';
+part 'help_center/components/contents/app_work.dart';
+
+part 'help_center/components/buy_items_content_screen.dart';
+part 'help_center/components/contents/buy_items.dart';
+
+part 'help_center/components/features_cod_content_screen.dart';
+part 'help_center/components/contents/features_cod.dart';
+>>>>>>> 027ae58549c921ba4376120842926eec07e9a8d7
