@@ -94,7 +94,7 @@ class _SignFormState extends State<SignForm> {
       });
     });
     setState(() {
-      _isLoading = false;
+      _isLoading = false; 
     });
   }
 
