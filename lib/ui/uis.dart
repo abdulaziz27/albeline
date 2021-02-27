@@ -95,9 +95,7 @@ part 'help_center/components/body.dart';
 part 'setting_profile/setting_profile_screen.dart';
 part 'setting_profile/components/body.dart';
 
-<<<<<<< HEAD
 part 'category_detail/category_detail_screen.dart';
-=======
 part 'help_center/components/app_work_content_screen.dart';
 part 'help_center/components/contents/app_work.dart';
 
@@ -106,4 +104,3 @@ part 'help_center/components/contents/buy_items.dart';
 
 part 'help_center/components/features_cod_content_screen.dart';
 part 'help_center/components/contents/features_cod.dart';
->>>>>>> 027ae58549c921ba4376120842926eec07e9a8d7
