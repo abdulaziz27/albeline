@@ -1,12 +1,14 @@
 import 'dart:convert';
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:albeline/models/models.dart';
-// import 'dart:async';
-// import 'dart:io';
+import 'package:albeline/services/auth.dart';
+import 'dart:async';
+import 'dart:io';
 
 // Splash Screen
 import 'package:albeline/constants.dart';
@@ -14,6 +16,7 @@ import 'package:albeline/size_config.dart';
 // import 'package:albeline/routes.dart';
 // import 'package:albeline/theme.dart';
 import 'package:albeline/enums.dart';
+import 'package:albeline/wrapper.dart';
 
 // This is the best practice
 // import '../components/splash_content.dart';

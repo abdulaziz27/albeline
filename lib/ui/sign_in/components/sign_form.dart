@@ -28,76 +28,6 @@ class _SignFormState extends State<SignForm> {
       });
   }
 
-  Future loginUser(String email, String password) async {
-    try {
-      var data = {"email": email, "password": password};
-      print(data);
-      var url = "https://albeline-backend.herokuapp.com/api/login";
-      var hasil = await http.post(url, body: (data));
-      if (hasil.statusCode == 200) {
-        print("Login Successfully");
-        return true;
-      } else {
-        print("Failed Login");
-        return null;
-      }
-    } catch (e) {
-      print("Error on catch $e");
-    }
-  }
-
-  void login() {
-    loginUser(email.text, password.text).then((value) {
-      setState(() {
-        _isLoading = true;
-      });
-      setState(() {
-        if (value == true) {
-          // msg = "Success";
-          AlertDialog alertDialog = AlertDialog(
-            content: Container(
-              height: 100.0,
-              child: Column(
-                children: [
-                  Text("Login Successfully"),
-                  RaisedButton(
-                    child: Text("OK"),
-                    onPressed: () => Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => LoginSuccessScreen()),
-                      (Route<dynamic> route) => false,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          );
-          showDialog(context: context, child: alertDialog);
-        } else {
-          AlertDialog alertDialog = AlertDialog(
-            content: Container(
-              height: 100.0,
-              child: Column(
-                children: [
-                  Text("Login Failed"),
-                  RaisedButton(
-                    child: Text("OK"),
-                    onPressed: () => Navigator.pop(context),
-                  )
-                ],
-              ),
-            ),
-          );
-          showDialog(context: context, child: alertDialog);
-        }
-      });
-    });
-    setState(() {
-      _isLoading = false; 
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Form(
@@ -140,9 +70,25 @@ class _SignFormState extends State<SignForm> {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                login();
+                // await AuthServices.signInAnonymous();
                 // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
+            },
+          ),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          DefaultButton(
+            text: "Sign In As Guest",
+            press: () async {
+              await AuthServices.signInAnonymous().then(
+                (value) => setState(() {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LoginSuccessScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                }),
+              );
             },
           ),
         ],
