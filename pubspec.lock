@@ -448,8 +448,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.6.1"
-<<<<<<< HEAD
-=======
   yaml:
     dependency: transitive
     description:
@@ -457,7 +455,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.1"
->>>>>>> 027ae58549c921ba4376120842926eec07e9a8d7
 sdks:
   dart: ">=2.7.0 <3.0.0"
   flutter: ">=1.16.0 <2.0.0"
