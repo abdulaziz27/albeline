@@ -39,30 +39,38 @@ class _SpecialOffersState extends State<SpecialOffers> {
           ),
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
-        SingleChildScrollView(
-          scrollDirection: Axis.horizontal,
-          child: Row(
-            children: [
-              ...List.generate(categories.length, (index) {
-                return SpecialOfferCard(
-                  image:
-                      'https://albeline-backend.herokuapp.com/api/image/${categories[index].image}',
-                  category: categories[index].name,
-                  numOfBrands: categories[index].id.length,
-                  press: () {
-                    // Navigator.push(context, MaterialPageRoute(
-                    //   builder: (context) {
-                    //     return ByCategoryScreen(
-                    //         id: categories[index].id.toString());
-                    //   },
-                    // ));
-                  },
+        FutureBuilder(
+            future: Product.getProducts(),
+            builder: (context, snapshot) {
+              if (!snapshot.hasData || snapshot.data.isEmpty)
+                return Center(
+                    child: CircularProgressIndicator()); //CIRCULAR INDICATOR
+              else
+                return SingleChildScrollView(
+                  scrollDirection: Axis.horizontal,
+                  child: Row(
+                    children: [
+                      ...List.generate(categories.length, (index) {
+                        return SpecialOfferCard(
+                          image:
+                              'https://albeline-backend.herokuapp.com/api/image/${categories[index].image}',
+                          category: categories[index].name,
+                          numOfBrands: categories[index].id.length,
+                          press: () {
+                            // Navigator.push(context, MaterialPageRoute(
+                            //   builder: (context) {
+                            //     return ByCategoryScreen(
+                            //         id: categories[index].id.toString());
+                            //   },
+                            // ));
+                          },
+                        );
+                      }),
+                      SizedBox(width: getProportionateScreenWidth(20)),
+                    ],
+                  ),
                 );
-              }),
-              SizedBox(width: getProportionateScreenWidth(20)),
-            ],
-          ),
-        ),
+            }),
       ],
     );
   }

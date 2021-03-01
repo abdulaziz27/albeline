@@ -98,7 +98,9 @@ part 'help_center/components/body.dart';
 part 'setting_profile/setting_profile_screen.dart';
 part 'setting_profile/components/body.dart';
 
-part 'category_detail/category_detail_screen.dart';
+part 'productsbycategory/products_by_category_screen.dart';
+// part 'productsbycategory/';
+
 part 'help_center/components/app_work_content_screen.dart';
 part 'help_center/components/contents/app_work.dart';
 
