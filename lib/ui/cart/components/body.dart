@@ -1,6 +1,6 @@
 part of '../../uis.dart';
 
-class Nonotification extends StatelessWidget {
+class Nodata extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -8,7 +8,7 @@ class Nonotification extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           Image.asset(
-            "assets/pics/Nonotification.png",
+            "assets/pics/Nodata.png",
             fit: BoxFit.cover,
           ),
           Positioned(
