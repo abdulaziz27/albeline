@@ -111,7 +111,7 @@ class FeaturesCODContent extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      "The delivery of goods is guaranteed safe because the buyer can only open the goods after the courier receives payment. If there is a return, the postage is covered by Tokopedia, and lost/damaged items will be automatically covered by insurance.",
+                      "The delivery of goods is guaranteed safe because the buyer can only open the goods after the courier receives payment. If there is a return, the postage is covered by Albeline, and lost/damaged items will be automatically covered by insurance.",
                       style: TextStyle(
                           color: Colors.black,
                           // fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class FeaturesCODContent extends StatelessWidget {
                     height: 20,
                   ),
                   Text(
-                    "The Pay on Place or COD (Cash on Delivery) feature allows the buyer to make cash payments to the courier after the goods are received. Features that can be used by all Tokopedia users!.",
+                    "The Pay on Place or COD (Cash on Delivery) feature allows the buyer to make cash payments to the courier after the goods are received. Features that can be used by all Albeline users!.",
                     style: TextStyle(
                         color: Colors.black,
                         // fontWeight: FontWeight.bold,
@@ -150,7 +150,7 @@ class FeaturesCODContent extends StatelessWidget {
                     height: 10,
                   ),
                   Text(
-                    "Isn't that interesting? Let's activate the COD (Pay on the Spot) feature now! You can activate this feature via the desktop or the Tokopedia Seller application on Android. Check out the easy steps to activate the COD (Pay on Place) feature via the desktop below.",
+                    "Isn't that interesting? Let's activate the COD (Pay on the Spot) feature now! You can activate this feature via the desktop or the Albeline Seller application on Android. Check out the easy steps to activate the COD (Pay on Place) feature via the desktop below.",
                     style: TextStyle(
                         color: Colors.black,
                         // fontWeight: FontWeight.bold,
@@ -230,7 +230,7 @@ class FeaturesCODContent extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      "Couriers do not need to deliver money to sellers. Sales funds will automatically go to the Tokopedia Seller balance after a successful transaction.",
+                      "Couriers do not need to deliver money to sellers. Sales funds will automatically go to the Albeline Seller balance after a successful transaction.",
                       style: TextStyle(
                           color: Colors.black,
                           // fontWeight: FontWeight.bold,
@@ -249,7 +249,7 @@ class FeaturesCODContent extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      "If the buyer has been contacted repeatedly but there is still no response, the order will be canceled and the product will be sent back to the seller and the buyer will be blacklisted by Tokopedia. The seller does not need to issue postage at all.",
+                      "If the buyer has been contacted repeatedly but there is still no response, the order will be canceled and the product will be sent back to the seller and the buyer will be blacklisted by Albeline. The seller does not need to issue postage at all.",
                       style: TextStyle(
                           color: Colors.black,
                           // fontWeight: FontWeight.bold,
@@ -287,7 +287,7 @@ class FeaturesCODContent extends StatelessWidget {
                   Container(
                     padding: EdgeInsets.all(20),
                     child: Text(
-                      "The return fee will be borne by Tokopedia. The seller does not need to issue any postage.",
+                      "The return fee will be borne by Albeline. The seller does not need to issue any postage.",
                       style: TextStyle(
                           color: Colors.black,
                           // fontWeight: FontWeight.bold,
