@@ -7,7 +7,7 @@ class LoginSuccessScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: SizedBox(),
-        title: Text("Login Success"),
+        title: Text("Albeline Bot"),
       ),
       body: LoginSBody(),
     );
