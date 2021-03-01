@@ -1,4 +1,5 @@
 import 'dart:convert';
+// import 'dart:html';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -73,6 +74,9 @@ part 'profile/profile_screen.dart';
 part 'profile/components/body.dart';
 part 'profile/components/profile_menu.dart';
 part 'profile/components/profile_pic.dart';
+
+part 'cart/cart_screen.dart';
+part 'cart/components/body.dart';
 
 part 'notification/notif_screen.dart';
 part 'notification/components/body.dart';
