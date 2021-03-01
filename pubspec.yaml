@@ -35,9 +35,11 @@ dependencies:
   shared_preferences: ^0.5.12+4
   flutter_bloc: ^6.1.1
   equatable: ^1.2.5
+
   
   firebase_auth: ^0.15.5+2
   firebase_core: "0.4.4"
+
   
 dev_dependencies:
   flutter_test:
