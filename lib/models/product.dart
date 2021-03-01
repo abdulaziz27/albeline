@@ -5,14 +5,25 @@ class Product {
   String name;
   String images;
   String price;
+  List<Category> categories;
 
-  Product({this.id, this.name, this.images, this.price});
+  Product({this.id, this.name, this.images, this.price, this.categories});
 
   factory Product.createProduct(Map<String, dynamic> object) {
     return Product(
       id: object['id'].toString(),
       name: object['name'],
       images: object['images'][0]['id'].toString(),
+      price: object['price'].toString(),
+    );
+  }
+
+  factory Product.createByCategory(Map<String, dynamic> object) {
+    return Product(
+      id: object['id'].toString(),
+      name: object['name'],
+      images: object['images'][0]['id'].toString(),
+      categories: object['categories'],
       price: object['price'].toString(),
     );
   }
@@ -38,6 +49,19 @@ class Product {
     print('===================== PRODUCT LENGTH ===================');
     print('===================PRODUCT LENGTH =====================');
     return products;
+  }
+
+  static Future<Product> getByCategory(String id) async {
+    String baseUrl =
+        'https://albeline-backend.herokuapp.com/api/category/${id}';
+
+    var productByCategoryResult = await http.get(baseUrl);
+    var jsonObj = json.decode(productByCategoryResult.body);
+    print(jsonObj);
+
+    var byCategoryData = (jsonObj as Map<String, dynamic>)['products'];
+
+    return Product.createByCategory(byCategoryData);
   }
 
   // static Future<Product> connectToAPI(

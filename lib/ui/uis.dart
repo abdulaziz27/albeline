@@ -1,11 +1,15 @@
+import 'dart:convert';
+// import 'dart:html';
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:albeline/models/models.dart';
-// import 'dart:async';
-// import 'dart:io';
+import 'package:albeline/services/auth.dart';
+import 'dart:async';
+import 'dart:io';
 
 // Splash Screen
 import 'package:albeline/constants.dart';
@@ -13,6 +17,7 @@ import 'package:albeline/size_config.dart';
 // import 'package:albeline/routes.dart';
 // import 'package:albeline/theme.dart';
 import 'package:albeline/enums.dart';
+import 'package:albeline/wrapper.dart';
 
 // This is the best practice
 // import '../components/splash_content.dart';
@@ -21,6 +26,8 @@ import 'package:albeline/enums.dart';
 // This is the best practice
 // import '../components/splash_content.dart';
 import 'package:albeline/widgets/widgets.dart';
+import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'splash/splash_screen.dart';
 part 'splash/components/body.dart';
@@ -71,6 +78,9 @@ part 'profile/components/body.dart';
 part 'profile/components/profile_menu.dart';
 part 'profile/components/profile_pic.dart';
 
+part 'cart/cart_screen.dart';
+part 'cart/components/body.dart';
+
 part 'notification/notif_screen.dart';
 part 'notification/components/body.dart';
 
@@ -92,6 +102,7 @@ part 'help_center/components/body.dart';
 part 'setting_profile/setting_profile_screen.dart';
 part 'setting_profile/components/body.dart';
 
+part 'category_detail/category_detail_screen.dart';
 part 'help_center/components/app_work_content_screen.dart';
 part 'help_center/components/contents/app_work.dart';
 

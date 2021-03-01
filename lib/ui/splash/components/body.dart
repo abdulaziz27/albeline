@@ -62,7 +62,8 @@ class _SplashBodyState extends State<SplashBody> {
                     DefaultButton(
                       text: "Continue",
                       press: () {
-                        Navigator.pushNamed(context, SignInScreen.routeName);
+                        // Navigator.pushNamed(context, );
+                        Navigator.of(context).pushNamed(SignInScreen.routeName);
                       },
                     ),
                     Spacer(),

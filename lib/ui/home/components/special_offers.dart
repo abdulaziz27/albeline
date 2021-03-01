@@ -49,7 +49,14 @@ class _SpecialOffersState extends State<SpecialOffers> {
                       'https://albeline-backend.herokuapp.com/api/image/${categories[index].image}',
                   category: categories[index].name,
                   numOfBrands: categories[index].id.length,
-                  press: () {},
+                  press: () {
+                    // Navigator.push(context, MaterialPageRoute(
+                    //   builder: (context) {
+                    //     return ByCategoryScreen(
+                    //         id: categories[index].id.toString());
+                    //   },
+                    // ));
+                  },
                 );
               }),
               SizedBox(width: getProportionateScreenWidth(20)),

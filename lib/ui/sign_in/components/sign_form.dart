@@ -7,8 +7,10 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
-  String email;
-  String password;
+  TextEditingController email = TextEditingController();
+  TextEditingController password = TextEditingController();
+  Map<String, String> _authData = {'email': '', 'password': ''};
+  bool _isLoading = false;
   bool remember = false;
   final List<String> errors = [];
 
@@ -38,22 +40,22 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           Row(
             children: [
-              Checkbox(
-                value: remember,
-                activeColor: kPrimaryColor,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
-              ),
-              Text("Remember me"),
+              // Checkbox(
+              //   value: remember,
+              //   activeColor: kPrimaryColor,
+              //   onChanged: (value) {
+              //     setState(() {
+              //       remember = value;
+              //     });
+              //   },
+              // ),
+              // Text("Remember me"),
               Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
                     context, ForgotPasswordScreen.routeName),
                 child: Text(
-                  "Forgot Password",
+                  "Forgot/Reset Password?",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
               )
@@ -63,13 +65,49 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                // await AuthServices.signInAnonymous();
+                try {
+                  FirebaseUser user =
+                      (await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    email: email.text,
+                    password: password.text,
+                  ))
+                          .user;
+                  if (user != null) {
+                    // SharedPreferences prefs =
+                    //     await SharedPreferences.getInstance();
+                    // prefs.setString('displayName', user.displayName);
+                    Navigator.of(context)
+                        .pushNamed(LoginSuccessScreen.routeName);
+                  }
+                } catch (e) {
+                  print(e);
+                  email.text = "";
+                  password.text = "";
+                }
+                // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
+            },
+          ),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          DefaultButton(
+            text: "Sign In As Guest",
+            press: () async {
+              await AuthServices.signInAnonymous().then(
+                (value) => setState(() {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => LoginSuccessScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                }),
+              );
             },
           ),
         ],
@@ -80,7 +118,10 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildPasswordFormField() {
     return TextFormField(
       obscureText: true,
-      onSaved: (newValue) => password = newValue,
+      onSaved: (value) {
+        _authData['password'] = value;
+      },
+      controller: password,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kPassNullError);
@@ -113,7 +154,10 @@ class _SignFormState extends State<SignForm> {
   TextFormField buildEmailFormField() {
     return TextFormField(
       keyboardType: TextInputType.emailAddress,
-      onSaved: (newValue) => email = newValue,
+      onSaved: (value) {
+        _authData['email'] = value;
+      },
+      controller: email,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kEmailNullError);

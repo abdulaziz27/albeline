@@ -44,65 +44,47 @@ class Category {
   }
 }
 
-class CategoryDetail {
-  String id;
-  String name;
-  String store;
-  String detailImg;
-  String category;
-  String reviews;
-  String price;
-  String sold;
-  String rate;
-  String stock;
-  String heavy;
-  String condition;
-  String description;
+// class ByCategory {
+//   String id;
+//   List name;
+//   String productId;
+//   String productName;
+//   String productImg;
+//   String price;
+//   String sold;
 
-  CategoryDetail({
-    this.id,
-    this.name,
-    this.store,
-    this.detailImg,
-    this.category,
-    this.reviews,
-    this.price,
-    this.sold,
-    this.rate,
-    this.stock,
-    this.heavy,
-    this.condition,
-    this.description,
-  });
+//   ByCategory({
+//     this.id,
+//     this.name,
+//     this.productId,
+//     this.productName,
+//     this.productImg,
+//     this.price,
+//     this.sold,
+//   });
 
-  factory CategoryDetail.createCategoryDetail(Map<String, dynamic> object) {
-    return CategoryDetail(
-      id: object['id'].toString(),
-      name: object['name'],
-      detailImg: object['images']['id'].toString(),
-      store: object['stores']['id'].toString(),
-      category: object['categories']['id'].toString(),
-      reviews: object['reviews']['id'].toString(),
-      price: object['price'].toString(),
-      sold: object['sold'].toString(),
-      rate: object['rate'].toString(),
-      stock: object['stock'].toString(),
-      heavy: object['heavy'].toString(),
-      condition: object['condition'].toString(),
-      description: object['description'].toString(),
-    );
-  }
+//   factory ByCategory.createByCategory(Map<String, dynamic> object) {
+//     return ByCategory(
+//       id: object['products']['categories']['id'].toString(),
+//       name: object['products']['categories']['name'],
+//       productId: object['products']['id'].toString(),
+//       productName: object['products']['name'].toString(),
+//       productImg: object['products']['images']['0']['id'].toString(),
+//       price: object['products']['price'].toString(),
+//       sold: object['products']['sold'].toString(),
+//     );
+//   }
 
-  static Future<CategoryDetail> getCategoryDetail(String id) async {
-    String baseUrl =
-        'https://albeline-backend.herokuapp.com/api/category/${id}';
+//   static Future<ByCategory> getByCategory(String id) async {
+//     String baseUrl =
+//         'https://albeline-backend.herokuapp.com/api/category/${id}';
 
-    var productDetailResult = await http.get(baseUrl);
-    var jsonObj = json.decode(productDetailResult.body);
-    print(jsonObj);
+//     var productByCategoryResult = await http.get(baseUrl);
+//     var jsonObj = json.decode(productByCategoryResult.body);
+//     print(jsonObj);
 
-    var userData = (jsonObj as Map<String, dynamic>)['product'];
+//     var byCategoryData = (jsonObj as Map<String, dynamic>)['products'];
 
-    return CategoryDetail.createCategoryDetail(userData);
-  }
-}
+//     return ByCategory.createByCategory(byCategoryData);
+//   }
+// }
