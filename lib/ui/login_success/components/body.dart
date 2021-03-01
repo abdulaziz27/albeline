@@ -12,7 +12,7 @@ class LoginSBody extends StatelessWidget {
         ),
         SizedBox(height: SizeConfig.screenHeight * 0.08),
         Text(
-          "Login Success",
+          "Assalamualaikum :)",
           style: TextStyle(
             fontSize: getProportionateScreenWidth(30),
             fontWeight: FontWeight.bold,
@@ -25,7 +25,12 @@ class LoginSBody extends StatelessWidget {
           child: DefaultButton(
             text: "Go Shopping!",
             press: () {
-              Navigator.pushNamed(context, HomeScreen.routeName);
+              // Navigator.pushNamed(context, HomeScreen.routeName);
+              Navigator.pushAndRemoveUntil(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+                (Route<dynamic> route) => false,
+              );
             },
           ),
         ),

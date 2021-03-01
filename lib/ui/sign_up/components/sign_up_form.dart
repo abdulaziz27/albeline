@@ -46,13 +46,14 @@ class _SignUpFormState extends State<SignUpForm> {
       'username': username
     };
     print(data.toString());
-    final response = await http.post("https://albeline-backend.herokuapp.com/api/register",
-        headers: {
-          "Accept": "application/json",
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
-        body: data,
-        encoding: Encoding.getByName("utf-8"));
+    final response =
+        await http.post("https://albeline-backend.herokuapp.com/api/register",
+            headers: {
+              "Accept": "application/json",
+              "Content-Type": "application/x-www-form-urlencoded"
+            },
+            body: data,
+            encoding: Encoding.getByName("utf-8"));
 
     if (response.statusCode == 200) {
       setState(() {
@@ -62,7 +63,7 @@ class _SignUpFormState extends State<SignUpForm> {
       //   duration: Duration(milliseconds: 2000),
       //   content: Text("You have registered please login!"),
       //   );
-        // Scaffold.of(context).showSnackBar(snackBar);
+      // Scaffold.of(context).showSnackBar(snackBar);
       Navigator.pop(context);
       print("Success");
       // Map<String, dynamic> resposne = jsonDecode(response.body);
@@ -86,7 +87,7 @@ class _SignUpFormState extends State<SignUpForm> {
       //   content: Text("Please try again!"),
       //   );
       //   Scaffold.of(context).showSnackBar(snackBar);
-          print("Failed");
+      print("Failed");
     }
   }
 
@@ -113,7 +114,7 @@ class _SignUpFormState extends State<SignUpForm> {
       key: _formKey,
       child: Column(
         children: [
-          buildUsernameFormField(),  
+          buildUsernameFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildEmailFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
@@ -124,12 +125,33 @@ class _SignUpFormState extends State<SignUpForm> {
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "Continue",
-            press: () {
-              signup(_usernameController.text, _emailController.text, _passwordController.text, _cPasswordController.text);
+            press: () async {
+              // signup(_usernameController.text, _emailController.text,
+              //     _passwordController.text, _cPasswordController.text);
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
-                Navigator.pop(context);
+                try {
+                  FirebaseUser user = (await FirebaseAuth.instance
+                          .createUserWithEmailAndPassword(
+                    email: _emailController.text,
+                    password: _passwordController.text,
+                  ))
+                      .user;
+                  if (user != null) {
+                    // UserUpdateInfo updateUser = UserUpdateInfo();
+                    // updateUser.displayName = _usernameController.text;
+                    // user.updateProfile(updateUser);
+                    Navigator.of(context)
+                        .pushNamed(LoginSuccessScreen.routeName);
+                  }
+                } catch (e) {
+                  print(e);
+                  _usernameController.text = "";
+                  _emailController.text = "";
+                  _passwordController.text = "";
+                  _cPasswordController.text = "";
+                }
               }
             },
           ),

@@ -1,10 +1,15 @@
 part of '../../uis.dart';
 
-class ProfileBody extends StatelessWidget {
+class ProfileBody extends StatefulWidget {
   // final User user;
 
   // ProfileBody(this.user);
 
+  @override
+  _ProfileBodyState createState() => _ProfileBodyState();
+}
+
+class _ProfileBodyState extends State<ProfileBody> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -49,10 +54,18 @@ class ProfileBody extends StatelessWidget {
             },
           ),
           ProfileMenu(
-            text: "Log Out",
+            text: "Exit",
             icon: "assets/icons/Log out.svg",
             press: () async {
-              await AuthServices.signOut();
+              await AuthServices.signOut().then(
+                (value) => setState(() {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => SplashScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                }),
+              );
             },
           ),
         ],

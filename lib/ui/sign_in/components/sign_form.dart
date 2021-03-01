@@ -40,22 +40,22 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           Row(
             children: [
-              Checkbox(
-                value: remember,
-                activeColor: kPrimaryColor,
-                onChanged: (value) {
-                  setState(() {
-                    remember = value;
-                  });
-                },
-              ),
-              Text("Remember me"),
+              // Checkbox(
+              //   value: remember,
+              //   activeColor: kPrimaryColor,
+              //   onChanged: (value) {
+              //     setState(() {
+              //       remember = value;
+              //     });
+              //   },
+              // ),
+              // Text("Remember me"),
               Spacer(),
               GestureDetector(
                 onTap: () => Navigator.pushNamed(
                     context, ForgotPasswordScreen.routeName),
                 child: Text(
-                  "Forgot Password",
+                  "Forgot/Reset Password?",
                   style: TextStyle(decoration: TextDecoration.underline),
                 ),
               )
@@ -65,12 +65,31 @@ class _SignFormState extends State<SignForm> {
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Continue",
-            press: () {
+            press: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
                 // await AuthServices.signInAnonymous();
+                try {
+                  FirebaseUser user =
+                      (await FirebaseAuth.instance.signInWithEmailAndPassword(
+                    email: email.text,
+                    password: password.text,
+                  ))
+                          .user;
+                  if (user != null) {
+                    // SharedPreferences prefs =
+                    //     await SharedPreferences.getInstance();
+                    // prefs.setString('displayName', user.displayName);
+                    Navigator.of(context)
+                        .pushNamed(LoginSuccessScreen.routeName);
+                  }
+                } catch (e) {
+                  print(e);
+                  email.text = "";
+                  password.text = "";
+                }
                 // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
