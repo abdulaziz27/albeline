@@ -107,9 +107,19 @@ class _ForgotPassFormState extends State<ForgotPassForm> {
                 try {
                   FirebaseAuth.instance
                       .sendPasswordResetEmail(email: _emailController.text);
-                  Navigator.of(context).pop();
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => SignInScreen()),
+                    (Route<dynamic> route) => false,
+                  );
                 } catch (e) {
                   print(e);
+                  Flushbar(
+                    title: "Error!",
+                    message: "Please check again",
+                    duration: Duration(seconds: 1),
+                    backgroundColor: Colors.red,
+                  )..show(context);
                 }
               }
             },

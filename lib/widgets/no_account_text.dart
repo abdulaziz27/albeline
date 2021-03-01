@@ -23,6 +23,7 @@ class NoAccountText extends StatelessWidget {
                 color: kPrimaryColor),
           ),
         ),
+        SizedBox(height: 20),
       ],
     );
   }

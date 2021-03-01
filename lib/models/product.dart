@@ -47,7 +47,7 @@ class Product {
     print('===================== PRODUCT LENGTH ===================');
     print(products.length);
     print('===================== PRODUCT LENGTH ===================');
-    print('===================PRODUCT LENGTH =====================');
+    print('=================== PRODUCT LENGTH =====================');
     return products;
   }
 
@@ -120,7 +120,7 @@ class ProductDetail {
       reviews: object['reviews']['id'].toString(),
       price: object['price'].toString(),
       sold: object['sold'].toString(),
-      rate: object['rate'].toString(),
+      rate: object['rate'],
       stock: object['stock'].toString(),
       heavy: object['heavy'].toString(),
       condition: object['condition'].toString(),
@@ -131,12 +131,27 @@ class ProductDetail {
   static Future<ProductDetail> getProductDetail(String id) async {
     String baseUrl = 'https://albeline-backend.herokuapp.com/api/product/${id}';
 
-    var productDetailResult = await http.get(baseUrl);
-    var jsonObj = json.decode(productDetailResult.body);
-    print(jsonObj);
+    // var productDetailResult = await http.get(baseUrl);
+    // var jsonObj = json.decode(productDetailResult.body);
+    // print(jsonObj);
 
-    var userData = (jsonObj as Map<String, dynamic>)['product'];
+    // var userData = (jsonObj as Map<String, dynamic>)['product'];
 
-    return ProductDetail.createProductDetail(userData);
+    // return ProductDetail.createProductDetail(userData);
+
+    try {
+      http.Response hasil = await http.get(Uri.encodeFull(baseUrl),
+          headers: {"Accept": "application/json"});
+      if (hasil.statusCode == 200) {
+        print("Sukses Menampilkan Data");
+        final data = json.decode(hasil.body);
+        return data;
+      } else {
+        print("Gagal");
+        return null;
+      }
+    } catch (e) {
+      print("Error pada Catch $e");
+    }
   }
 }
