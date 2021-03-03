@@ -59,11 +59,16 @@ class _ProfileBodyState extends State<ProfileBody> {
             press: () async {
               await AuthServices.signOut().then(
                 (value) => setState(() {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => SplashScreen()),
-                    (Route<dynamic> route) => false,
-                  );
+                  Flushbar(
+                    title: "Logged out!",
+                    message: "See you again",
+                    duration: Duration(seconds: 2),
+                    backgroundColor: Colors.red,
+                  )..show(context).then((value) => Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(builder: (context) => SplashScreen()),
+                        (Route<dynamic> route) => false,
+                      ));
                 }),
               );
             },

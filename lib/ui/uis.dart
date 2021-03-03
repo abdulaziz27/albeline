@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:ui';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
@@ -18,6 +19,16 @@ import 'package:albeline/size_config.dart';
 // import 'package:albeline/theme.dart';
 import 'package:albeline/enums.dart';
 import 'package:albeline/wrapper.dart';
+
+// Chatt
+import 'package:flutter/material.dart';
+// import 'package:albeline/ui/chatt/widgets/category_selector.dart';
+// import 'package:albeline/ui/chatt/widgets/recent_chats.dart';
+// import 'package:albeline/ui/chatt/models/message_model.dart';
+// import 'package:albeline/ui/chatt/screens/chat_screen.dart';
+import 'package:albeline/ui/chatt/models/user_model.dart';
+
+// import 'package:albeline/ui/chatt/widgets/favorite_contacts.dart';
 
 // This is the best practice
 // import '../components/splash_content.dart';
@@ -78,6 +89,14 @@ part 'profile/components/body.dart';
 part 'profile/components/profile_menu.dart';
 part 'profile/components/profile_pic.dart';
 
+part 'chatt/chatt_screen.dart';
+part 'chatt/components/body.dart';
+// part 'chatt/widgets/category_selector.dart';
+// part 'chatt/widgets/favorite_contacts.dart';
+part 'chatt/widgets/recent_chats.dart';
+part 'chatt/screens/chat_screen.dart';
+part 'chatt/models/message_model.dart';
+
 part 'cart/cart_screen.dart';
 part 'cart/components/body.dart';
 
@@ -102,7 +121,9 @@ part 'help_center/components/body.dart';
 part 'setting_profile/setting_profile_screen.dart';
 part 'setting_profile/components/body.dart';
 
-part 'category_detail/category_detail_screen.dart';
+part 'productsbycategory/products_by_category_screen.dart';
+// part 'productsbycategory/';
+
 part 'help_center/components/app_work_content_screen.dart';
 part 'help_center/components/contents/app_work.dart';
 

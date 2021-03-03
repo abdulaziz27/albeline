@@ -64,7 +64,7 @@ class _SignFormState extends State<SignForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
-            text: "Continue",
+            text: "Sign In",
             press: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
@@ -82,13 +82,26 @@ class _SignFormState extends State<SignForm> {
                     // SharedPreferences prefs =
                     //     await SharedPreferences.getInstance();
                     // prefs.setString('displayName', user.displayName);
-                    Navigator.of(context)
-                        .pushNamed(LoginSuccessScreen.routeName);
+                    Flushbar(
+                      title: "Alhamdulillah",
+                      message: "Happy shopping :)",
+                      backgroundColor: Colors.green,
+                      duration: Duration(seconds: 1),
+                    )..show(context).then((value) => Navigator.of(context)
+                        .pushNamed(LoginSuccessScreen.routeName));
                   }
                 } catch (e) {
                   print(e);
                   email.text = "";
                   password.text = "";
+                  setState(() {
+                    Flushbar(
+                      title: "Error!",
+                      message: "No one has signed in",
+                      duration: Duration(seconds: 1),
+                      backgroundColor: Colors.red,
+                    )..show(context);
+                  });
                 }
                 // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
@@ -100,12 +113,17 @@ class _SignFormState extends State<SignForm> {
             press: () async {
               await AuthServices.signInAnonymous().then(
                 (value) => setState(() {
-                  Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => LoginSuccessScreen()),
-                    (Route<dynamic> route) => false,
-                  );
+                  Flushbar(
+                    title: "Error!",
+                    message: "No one has signed in",
+                    duration: Duration(seconds: 1),
+                    backgroundColor: Colors.red,
+                  )..show(context).then((value) => Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LoginSuccessScreen()),
+                        (Route<dynamic> route) => false,
+                      ));
                 }),
               );
             },

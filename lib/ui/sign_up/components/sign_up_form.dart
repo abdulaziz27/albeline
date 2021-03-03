@@ -9,6 +9,7 @@ class _SignUpFormState extends State<SignUpForm> {
   String username, email, password, c_password;
   final _formKey = GlobalKey<FormState>();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
+
   bool remember = false;
   bool isLoading = false;
   final List<String> errors = [];
@@ -142,8 +143,13 @@ class _SignUpFormState extends State<SignUpForm> {
                     // UserUpdateInfo updateUser = UserUpdateInfo();
                     // updateUser.displayName = _usernameController.text;
                     // user.updateProfile(updateUser);
-                    Navigator.of(context)
-                        .pushNamed(LoginSuccessScreen.routeName);
+                    Flushbar(
+                      title: "Alhamdulillah",
+                      message: "Happy shopping :)",
+                      backgroundColor: Colors.green,
+                      duration: Duration(seconds: 1),
+                    )..show(context).then((value) => Navigator.of(context)
+                        .pushNamed(LoginSuccessScreen.routeName));
                   }
                 } catch (e) {
                   print(e);
@@ -151,6 +157,15 @@ class _SignUpFormState extends State<SignUpForm> {
                   _emailController.text = "";
                   _passwordController.text = "";
                   _cPasswordController.text = "";
+
+                  setState(() {
+                    Flushbar(
+                      title: "Error!",
+                      message: "No one has signed in",
+                      duration: Duration(seconds: 1),
+                      backgroundColor: Colors.red,
+                    )..show(context);
+                  });
                 }
               }
             },

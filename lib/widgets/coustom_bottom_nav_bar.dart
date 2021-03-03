@@ -44,8 +44,13 @@ class CustomBottomNavBar extends StatelessWidget {
               ),
               IconButton(
                 icon: SvgPicture.asset(
-                  "assets/icons/Chat bubble Icon.svg"),
-                onPressed: () {},
+                  "assets/icons/Chat bubble Icon.svg",
+                   color: MenuState.chatt == selectedMenu
+                      ? kPrimaryColor
+                      : inActiveIconColor,
+                  ),
+                onPressed: () =>
+                    Navigator.pushNamed(context, ChattScreen.routeName),
               ),
               IconButton(
                 icon: SvgPicture.asset(
