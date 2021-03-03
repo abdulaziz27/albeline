@@ -128,7 +128,7 @@ class ProductDetail {
     );
   }
 
-  static Future<ProductDetail> getProductDetail(String id) async {
+  Future getProductDetail(String id) async {
     String baseUrl = 'https://albeline-backend.herokuapp.com/api/product/${id}';
 
     // var productDetailResult = await http.get(baseUrl);

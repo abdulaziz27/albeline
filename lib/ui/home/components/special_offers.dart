@@ -11,6 +11,7 @@ class SpecialOffers extends StatefulWidget {
 
 class _SpecialOffersState extends State<SpecialOffers> {
   List<Category> categories = [];
+  // List dataCategory;
 
   void getListCategories() {
     Category.getCategories().then((value) {
@@ -40,7 +41,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
         ),
         SizedBox(height: getProportionateScreenWidth(20)),
         FutureBuilder(
-            future: Product.getProducts(),
+            future: Category.getCategories(),
             builder: (context, snapshot) {
               if (!snapshot.hasData || snapshot.data.isEmpty)
                 return Center(
@@ -55,7 +56,7 @@ class _SpecialOffersState extends State<SpecialOffers> {
                           image:
                               'https://albeline-backend.herokuapp.com/api/image/${categories[index].image}',
                           category: categories[index].name,
-                          numOfBrands: categories[index].id.length,
+                          numOfBrands: categories[index].id.toString().length,
                           press: () {
                             // Navigator.push(context, MaterialPageRoute(
                             //   builder: (context) {
@@ -134,7 +135,7 @@ class SpecialOfferCard extends StatelessWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        TextSpan(text: "$numOfBrands Brands")
+                        TextSpan(text: "$numOfBrands Product(s)")
                       ],
                     ),
                   ),

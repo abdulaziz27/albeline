@@ -5,10 +5,10 @@ class LoginSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: SizedBox(),
-        title: Text("Albeline Bot"),
-      ),
+      // appBar: AppBar(
+      //   leading: SizedBox(),
+      //   title: Text("Albeline Bot"),
+      // ),
       body: LoginSBody(),
     );
   }
