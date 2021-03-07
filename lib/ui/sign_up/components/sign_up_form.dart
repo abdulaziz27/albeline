@@ -34,80 +34,80 @@ class _SignUpFormState extends State<SignUpForm> {
       });
   }
 
-  signup(username, email, password, c_password) async {
-    setState(() {
-      isLoading = true;
-    });
-    print("Calling");
+  // signup(username, email, password, c_password) async {
+  //   setState(() {
+  //     isLoading = true;
+  //   });
+  //   print("Calling");
 
-    Map data = {
-      'email': email,
-      'password': password,
-      'c_password': c_password,
-      'username': username
-    };
-    print(data.toString());
-    final response =
-        await http.post("https://albeline-backend.herokuapp.com/api/register",
-            headers: {
-              "Accept": "application/json",
-              "Content-Type": "application/x-www-form-urlencoded"
-            },
-            body: data,
-            encoding: Encoding.getByName("utf-8"));
+  //   Map data = {
+  //     'email': email,
+  //     'password': password,
+  //     'c_password': c_password,
+  //     'username': username
+  //   };
+  //   print(data.toString());
+  //   final response =
+  //       await http.post("https://albeline-backend.herokuapp.com/api/register",
+  //           headers: {
+  //             "Accept": "application/json",
+  //             "Content-Type": "application/x-www-form-urlencoded"
+  //           },
+  //           body: data,
+  //           encoding: Encoding.getByName("utf-8"));
 
-    if (response.statusCode == 200) {
-      setState(() {
-        isLoading = false;
-      });
-      // final snackBar = SnackBar(
-      //   duration: Duration(milliseconds: 2000),
-      //   content: Text("You have registered please login!"),
-      //   );
-      // Scaffold.of(context).showSnackBar(snackBar);
-      Navigator.pop(context);
-      print("Success");
-      // Map<String, dynamic> resposne = jsonDecode(response.body);
-      // if (!resposne['error']) {
-      //   Map<String, dynamic> user = resposne['data'];
-      //   print(" User name ${user['data']}");
-      //   savePref(
-      //       1, user['username'], user['email'], user['password'], user['cPassword']);
-      //   Navigator.pop(context);
-      //   return true;
-      // } else {
-      //   print(" ${resposne['message']}");
-      // }
-      // _scaffoldKey.currentState
-      //     .showSnackBar(SnackBar(content: Text("${resposne['message']}")));
-    } else {
-      // _scaffoldKey.currentState
-      //     .showSnackBar(SnackBar(content: Text("please try again!")));
-      // final snackBar = SnackBar(
-      //   duration: Duration(milliseconds: 2000),
-      //   content: Text("Please try again!"),
-      //   );
-      //   Scaffold.of(context).showSnackBar(snackBar);
-      print("Failed");
-    }
-  }
+  //   if (response.statusCode == 200) {
+  //     setState(() {
+  //       isLoading = false;
+  //     });
+  //     // final snackBar = SnackBar(
+  //     //   duration: Duration(milliseconds: 2000),
+  //     //   content: Text("You have registered please login!"),
+  //     //   );
+  //     // Scaffold.of(context).showSnackBar(snackBar);
+  //     Navigator.pop(context);
+  //     print("Success");
+  //     // Map<String, dynamic> resposne = jsonDecode(response.body);
+  //     // if (!resposne['error']) {
+  //     //   Map<String, dynamic> user = resposne['data'];
+  //     //   print(" User name ${user['data']}");
+  //     //   savePref(
+  //     //       1, user['username'], user['email'], user['password'], user['cPassword']);
+  //     //   Navigator.pop(context);
+  //     //   return true;
+  //     // } else {
+  //     //   print(" ${resposne['message']}");
+  //     // }
+  //     // _scaffoldKey.currentState
+  //     //     .showSnackBar(SnackBar(content: Text("${resposne['message']}")));
+  //   } else {
+  //     // _scaffoldKey.currentState
+  //     //     .showSnackBar(SnackBar(content: Text("please try again!")));
+  //     // final snackBar = SnackBar(
+  //     //   duration: Duration(milliseconds: 2000),
+  //     //   content: Text("Please try again!"),
+  //     //   );
+  //     //   Scaffold.of(context).showSnackBar(snackBar);
+  //     print("Failed");
+  //   }
+  // }
 
-  savePref(
-    int value,
-    String username,
-    String email,
-    String password,
-    String c_password,
-  ) async {
-    SharedPreferences preferences = await SharedPreferences.getInstance();
+  // savePref(
+  //   int value,
+  //   String username,
+  //   String email,
+  //   String password,
+  //   String c_password,
+  // ) async {
+  //   SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    preferences.setInt("value", value);
-    preferences.setString("username", username);
-    preferences.setString("email", email);
-    preferences.setString("password", password);
-    preferences.setString("c_password", c_password);
-    preferences.commit();
-  }
+  //   preferences.setInt("value", value);
+  //   preferences.setString("username", username);
+  //   preferences.setString("email", email);
+  //   preferences.setString("password", password);
+  //   preferences.setString("c_password", c_password);
+  //   preferences.commit();
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -132,41 +132,42 @@ class _SignUpFormState extends State<SignUpForm> {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
-                try {
-                  FirebaseUser user = (await FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                  ))
-                      .user;
-                  if (user != null) {
-                    // UserUpdateInfo updateUser = UserUpdateInfo();
-                    // updateUser.displayName = _usernameController.text;
-                    // user.updateProfile(updateUser);
-                    Flushbar(
-                      title: "Alhamdulillah",
-                      message: "Happy shopping :)",
-                      backgroundColor: Colors.green,
-                      duration: Duration(seconds: 1),
-                    )..show(context).then((value) => Navigator.of(context)
-                        .pushNamed(LoginSuccessScreen.routeName));
-                  }
-                } catch (e) {
-                  print(e);
-                  _usernameController.text = "";
-                  _emailController.text = "";
-                  _passwordController.text = "";
-                  _cPasswordController.text = "";
+                regiter();
+                // try {
+                //   FirebaseUser user = (await FirebaseAuth.instance
+                //           .createUserWithEmailAndPassword(
+                //     email: _emailController.text,
+                //     password: _passwordController.text,
+                //   ))
+                //       .user;
+                //   if (user != null) {
+                //     // UserUpdateInfo updateUser = UserUpdateInfo();
+                //     // updateUser.displayName = _usernameController.text;
+                //     // user.updateProfile(updateUser);
+                //     Flushbar(
+                //       title: "Alhamdulillah",
+                //       message: "Happy shopping :)",
+                //       backgroundColor: Colors.green,
+                //       duration: Duration(seconds: 1),
+                //     )..show(context).then((value) => Navigator.of(context)
+                //         .pushNamed(LoginSuccessScreen.routeName));
+                //   }
+                // } catch (e) {
+                //   print(e);
+                //   _usernameController.text = "";
+                //   _emailController.text = "";
+                //   _passwordController.text = "";
+                //   _cPasswordController.text = "";
 
-                  setState(() {
-                    Flushbar(
-                      title: "Error!",
-                      message: "No one has signed in",
-                      duration: Duration(seconds: 1),
-                      backgroundColor: Colors.red,
-                    )..show(context);
-                  });
-                }
+                //   setState(() {
+                //     Flushbar(
+                //       title: "Error!",
+                //       message: "No one has signed in",
+                //       duration: Duration(seconds: 1),
+                //       backgroundColor: Colors.red,
+                //     )..show(context);
+                //   });
+                // }
               }
             },
           ),
@@ -308,5 +309,44 @@ class _SignUpFormState extends State<SignUpForm> {
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/User.svg"),
       ),
     );
+  }
+
+  void regiter() {
+    registerUser(_usernameController.text, _emailController.text,
+            _passwordController.text, _cPasswordController.text)
+        .then((value) {
+      setState(() {
+        isLoading = true;
+      });
+      setState(() {
+        if (value == true) {
+          // Navigator.pushReplacement(
+          //     context,
+          //     MaterialPageRoute(
+          //         builder: (contex) => LoginSuccessScreen()));
+          Flushbar(
+            title: "Alhamdulillah",
+            message: "Verify Email Has Been Sent! Please Verify it!",
+            backgroundColor: Colors.green,
+            duration: Duration(seconds: 4),
+          )..show(context).then((value) =>
+              Navigator.of(context).pushNamed(LoginSuccessScreen.routeName));
+        } else if (value == false) {
+          Flushbar(
+            title: "Opps",
+            message: "Your Username or Email Already Taken",
+            backgroundColor: Colors.red,
+            duration: Duration(seconds: 4),
+          )..show(context);
+        } else {
+          Flushbar(
+            title: "Error!",
+            message: "Invalid Data, Please re-Check",
+            duration: Duration(seconds: 4),
+            backgroundColor: Colors.red,
+          )..show(context);
+        }
+      });
+    });
   }
 }

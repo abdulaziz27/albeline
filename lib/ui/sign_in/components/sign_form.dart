@@ -11,8 +11,20 @@ class _SignFormState extends State<SignForm> {
   TextEditingController password = TextEditingController();
   Map<String, String> _authData = {'email': '', 'password': ''};
   bool _isLoading = false;
+  bool _obSecure = true;
   bool remember = false;
   final List<String> errors = [];
+
+  loginStatus() async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    if (sharedPreferences.getString("token") == null) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => SplashScreen()),
+        (Route<dynamic> route) => false,
+      );
+    }
+  }
 
   void addError({String error}) {
     if (!errors.contains(error))
@@ -27,6 +39,27 @@ class _SignFormState extends State<SignForm> {
         errors.remove(error);
       });
   }
+
+  // void login() {
+  //   loginUser(email.text, password.text).then((value) {
+  //     setState(() {
+  //       _isLoading = true;
+  //     });
+  //     setState(() {
+  //       if (value == true) {
+  //         Navigator.pushReplacement(context,
+  //             MaterialPageRoute(builder: (contex) => LoginSuccessScreen()));
+  //       } else {
+  //         Flushbar(
+  //           title: "Error!",
+  //           message: "No one has signed in",
+  //           duration: Duration(seconds: 1),
+  //           backgroundColor: Colors.red,
+  //         )..show(context);
+  //       }
+  //     });
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -70,64 +103,103 @@ class _SignFormState extends State<SignForm> {
                 _formKey.currentState.save();
                 // if all are valid then go to success screen
                 KeyboardUtil.hideKeyboard(context);
-                // await AuthServices.signInAnonymous();
-                try {
-                  FirebaseUser user =
-                      (await FirebaseAuth.instance.signInWithEmailAndPassword(
-                    email: email.text,
-                    password: password.text,
-                  ))
-                          .user;
-                  if (user != null) {
-                    // SharedPreferences prefs =
-                    //     await SharedPreferences.getInstance();
-                    // prefs.setString('displayName', user.displayName);
-                    Flushbar(
-                      title: "Alhamdulillah",
-                      message: "Happy shopping :)",
-                      backgroundColor: Colors.green,
-                      duration: Duration(seconds: 1),
-                    )..show(context).then((value) => Navigator.of(context)
-                        .pushNamed(LoginSuccessScreen.routeName));
-                  }
-                } catch (e) {
-                  print(e);
-                  email.text = "";
-                  password.text = "";
+                // login();
+                loginUser(email.text, password.text).then((value) {
                   setState(() {
-                    Flushbar(
-                      title: "Error!",
-                      message: "No one has signed in",
-                      duration: Duration(seconds: 1),
-                      backgroundColor: Colors.red,
-                    )..show(context);
+                    _isLoading = true;
                   });
-                }
+                  setState(() {
+                    if (value == true) {
+                      // Navigator.pushReplacement(
+                      //     context,
+                      //     MaterialPageRoute(
+                      //         builder: (contex) => LoginSuccessScreen()));
+                      Flushbar(
+                        title: "Logged In",
+                        message: "Happy shopping :)",
+                        backgroundColor: Colors.green,
+                        duration: Duration(seconds: 3),
+                      )..show(context).then((value) => Navigator.of(context)
+                          .pushNamed(LoginSuccessScreen.routeName));
+                    } else if (value == false) {
+                      Flushbar(
+                        title: "Logged In",
+                        message: "But You Haven't Verified Your Email",
+                        backgroundColor: Colors.green,
+                        duration: Duration(seconds: 4),
+                      )..show(context).then((value) => Navigator.of(context)
+                          .pushNamed(LoginSuccessScreen.routeName));
+                    } else {
+                      Flushbar(
+                        title: "Invalid Data!",
+                        message: "Please Check Your Email or Password",
+                        duration: Duration(seconds: 3),
+                        backgroundColor: Colors.red,
+                      )..show(context);
+                    }
+                  });
+                  setState(() {
+                    _isLoading = true;
+                  });
+                });
+                // await AuthServices.signInAnonymous();
+                // try {
+                //   FirebaseUser user =
+                //       (await FirebaseAuth.instance.signInWithEmailAndPassword(
+                //     email: email.text,
+                //     password: password.text,
+                //   ))
+                //           .user;
+                //   if (user != null) {
+                //     // SharedPreferences prefs =
+                //     //     await SharedPreferences.getInstance();
+                //     // prefs.setString('displayName', user.displayName);
+                //     Flushbar(
+                //       title: "Alhamdulillah",
+                //       message: "Happy shopping :)",
+                //       backgroundColor: Colors.green,
+                //       duration: Duration(seconds: 1),
+                //     )..show(context).then((value) => Navigator.of(context)
+                //         .pushNamed(LoginSuccessScreen.routeName));
+                //   }
+                // } catch (e) {
+                //   print(e);
+                //   email.text = "";
+                //   password.text = "";
+                //   setState(() {
+                //     Flushbar(
+                //       title: "Error!",
+                //       message: "No one has signed in",
+                //       duration: Duration(seconds: 1),
+                //       backgroundColor: Colors.red,
+                //     )..show(context);
+                //   });
+                // }
                 // Navigator.pushNamed(context, LoginSuccessScreen.routeName);
               }
             },
           ),
-          SizedBox(height: getProportionateScreenHeight(20)),
-          DefaultButton(
-            text: "Sign In As Guest",
-            press: () async {
-              await AuthServices.signInAnonymous().then(
-                (value) => setState(() {
-                  Flushbar(
-                    title: "Error!",
-                    message: "No one has signed in",
-                    duration: Duration(seconds: 1),
-                    backgroundColor: Colors.red,
-                  )..show(context).then((value) => Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => LoginSuccessScreen()),
-                        (Route<dynamic> route) => false,
-                      ));
-                }),
-              );
-            },
-          ),
+          // SizedBox(height: getProportionateScreenHeight(20)),
+          // DefaultButton(
+          //   text: "Sign In As Guest",
+          //   press: () async {
+          //     await AuthServices.signInAnonymous().then(
+          //       (value) => setState(() {
+          //         Flushbar(
+          //           title: "Error!",
+          //           message: "No one has signed in",
+          //           duration: Duration(seconds: 1),
+          //           backgroundColor: Colors.red,
+          //         )..show(context).then((value) => Navigator.pushAndRemoveUntil(
+          //               context,
+          //               MaterialPageRoute(
+          //                   builder: (context) => LoginSuccessScreen()),
+          //               (Route<dynamic> route) => false,
+          //             ));
+          //       }),
+          //     );
+          //   },
+          // ),
         ],
       ),
     );
@@ -135,7 +207,7 @@ class _SignFormState extends State<SignForm> {
 
   TextFormField buildPasswordFormField() {
     return TextFormField(
-      obscureText: true,
+      obscureText: _obSecure,
       onSaved: (value) {
         _authData['password'] = value;
       },
@@ -159,13 +231,19 @@ class _SignFormState extends State<SignForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "Password",
-        hintText: "Enter your password",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
-      ),
+          labelText: "Password",
+          hintText: "Enter your password",
+          // If  you are using latest version of flutter then lable text and hint text shown like this
+          // if you r using flutter less then 1.20.* then maybe this is not working properly
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          // suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Lock.svg"),
+          suffixIcon: IconButton(
+              icon: Icon(_obSecure ? Icons.visibility_off : Icons.visibility),
+              onPressed: () {
+                setState(() {
+                  _obSecure = !_obSecure;
+                });
+              })),
     );
   }
 

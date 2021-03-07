@@ -12,7 +12,7 @@ class Nodata extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           Positioned(
-            bottom: MediaQuery.of(context).size.height * 0.15,
+            bottom: MediaQuery.of(context).size.height * 0.30,
             left: MediaQuery.of(context).size.width * 0.3,
             right: MediaQuery.of(context).size.width * 0.3,
             child: Container(
@@ -25,15 +25,21 @@ class Nodata extends StatelessWidget {
                   ),
                 ],
               ),
-              // child: FlatButton(
-              //   color: Colors.white,
-              //   shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(50)),
-              //   onPressed: () {},
-              //   child: Text(
-              //     "retry".toUpperCase(),
-              //   ),
-              // ),
+              child: FlatButton(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
+                child: Text(
+                  "Home".toUpperCase(),
+                ),
+              ),
             ),
           )
         ],

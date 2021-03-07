@@ -25,15 +25,21 @@ class Nonotification extends StatelessWidget {
                   ),
                 ],
               ),
-              // child: FlatButton(
-              //   color: Colors.white,
-              //   shape: RoundedRectangleBorder(
-              //       borderRadius: BorderRadius.circular(50)),
-              //   onPressed: () {},
-              //   child: Text(
-              //     "retry".toUpperCase(),
-              //   ),
-              // ),
+              child: FlatButton(
+                color: Colors.white,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(50)),
+                onPressed: () {
+                  Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    (Route<dynamic> route) => false,
+                  );
+                },
+                child: Text(
+                  "Home".toUpperCase(),
+                ),
+              ),
             ),
           )
         ],

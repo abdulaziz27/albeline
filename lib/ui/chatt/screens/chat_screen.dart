@@ -80,7 +80,7 @@ class _ChatScreenState extends State<ChatScreen> {
   _buildMessageComposer() {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 8.0),
-      height: 65.0,
+      height: 70.0,
       color: Colors.white,
       child: Row(
         children: <Widget>[

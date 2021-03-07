@@ -2,13 +2,14 @@ import 'dart:convert';
 // import 'dart:html';
 import 'dart:ui';
 
-import 'package:firebase_auth/firebase_auth.dart';
+// import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:albeline/models/models.dart';
 import 'package:albeline/services/auth.dart';
+import 'package:albeline/viewModels/view_models.dart';
 import 'dart:async';
 import 'dart:io';
 
