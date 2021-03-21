@@ -52,7 +52,7 @@ class _CreateProductFormState extends State<CreateProductForm> {
           buildCategoriesFormField(),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
-            text: "continue",
+            text: "Create Product",
             press: () {
               if (_formKey.currentState.validate()) {
                 Navigator.pushNamed(context, OtpScreen.routeName);

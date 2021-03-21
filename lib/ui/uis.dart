@@ -21,6 +21,16 @@ import 'package:albeline/size_config.dart';
 import 'package:albeline/enums.dart';
 // import 'package:albeline/wrapper.dart';
 
+// Chatt
+import 'package:flutter/material.dart';
+// import 'package:albeline/ui/chatt/widgets/category_selector.dart';
+// import 'package:albeline/ui/chatt/widgets/recent_chats.dart';
+// import 'package:albeline/ui/chatt/models/message_model.dart';
+// import 'package:albeline/ui/chatt/screens/chat_screen.dart';
+import 'package:albeline/ui/chatt/models/user_model.dart';
+
+// import 'package:albeline/ui/chatt/widgets/favorite_contacts.dart';
+
 // This is the best practice
 // import '../components/splash_content.dart';
 // import '../../../components/default_button.dart';
@@ -79,6 +89,14 @@ part 'profile/profile_screen.dart';
 part 'profile/components/body.dart';
 part 'profile/components/profile_menu.dart';
 part 'profile/components/profile_pic.dart';
+
+part 'chatt/chatt_screen.dart';
+part 'chatt/components/body.dart';
+// part 'chatt/widgets/category_selector.dart';
+// part 'chatt/widgets/favorite_contacts.dart';
+part 'chatt/widgets/recent_chats.dart';
+part 'chatt/screens/chat_screen.dart';
+part 'chatt/models/message_model.dart';
 
 part 'cart/cart_screen.dart';
 part 'cart/components/body.dart';

@@ -13,6 +13,7 @@ final Map<String, WidgetBuilder> routes = {
   // OtpScreen.routeName: (context) => OtpScreen(),
   // DetailsScreen.routeName: (context) => DetailsScreen(),
   CartScreen.routeName: (context) => CartScreen(),
+  ChattScreen.routeName: (context) => ChattScreen(),
   ProfileScreen.routeName: (context) => ProfileScreen(),
   NotifScreen.routeName: (context) => NotifScreen(),
   HelpCenterScreen.routeName: (context) => HelpCenterScreen(),
