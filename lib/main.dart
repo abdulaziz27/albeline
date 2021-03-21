@@ -1,10 +1,10 @@
 import 'package:albeline/routes.dart';
 import 'package:albeline/theme.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 import 'ui/uis.dart';
-import 'package:albeline/services/auth.dart';
-import 'wrapper.dart';
+// import 'package:albeline/services/auth.dart';
+// import 'wrapper.dart';
 
 void main() async {
   runApp(MyApp());

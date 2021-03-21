@@ -1,4 +1,4 @@
-import 'dart:convert';
+// import 'dart:convert';
 // import 'dart:html';
 import 'dart:ui';
 
@@ -8,10 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:albeline/models/models.dart';
-import 'package:albeline/services/auth.dart';
+// import 'package:albeline/services/auth.dart';
 import 'package:albeline/viewModels/view_models.dart';
-import 'dart:async';
-import 'dart:io';
+// import 'dart:async';
+// import 'dart:io';
 
 // Splash Screen
 import 'package:albeline/constants.dart';
@@ -19,7 +19,7 @@ import 'package:albeline/size_config.dart';
 // import 'package:albeline/routes.dart';
 // import 'package:albeline/theme.dart';
 import 'package:albeline/enums.dart';
-import 'package:albeline/wrapper.dart';
+// import 'package:albeline/wrapper.dart';
 
 // This is the best practice
 // import '../components/splash_content.dart';
@@ -28,7 +28,7 @@ import 'package:albeline/wrapper.dart';
 // This is the best practice
 // import '../components/splash_content.dart';
 import 'package:albeline/widgets/widgets.dart';
-import 'package:http/http.dart' as http;
+// import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 part 'splash/splash_screen.dart';
