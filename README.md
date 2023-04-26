@@ -1,12 +1,12 @@
 # albeline
 
-A new Flutter project.
+an mobile app version of albeline that built in flutter
 
-## Getting Started
+## Note
 
-This project is a starting point for a Flutter application.
+Due to limited time, this mobile app version of albeline wasn't finished :)
 
-A few resources to get you started if this is your first Flutter project:
+A few resources for Flutter project:
 
 - [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
